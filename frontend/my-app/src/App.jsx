@@ -10,11 +10,9 @@ import './App.css';
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user');
-    
     if (token && userData) {
       setUser(JSON.parse(userData));
     }
@@ -23,7 +21,7 @@ function App() {
 
   const login = (token, userData) => {
     localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(userData));
+    localStorage.setItem('user',JSON.stringify(userData));
     setUser(userData);
   };
 
@@ -40,7 +38,7 @@ function App() {
       <div className="App">
         <Navbar user={user} logout={logout} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home/>} />
           <Route 
             path="/login" 
             element={user ? <Navigate to="/" /> : <Login onLogin={login} />} 
